@@ -1,6 +1,7 @@
 export class Column {
-    constructor(name) {
+    constructor(name, key) {
         this.name = name;
+        this.key = key;
         this.sort = false;
         this.sortDesc = false;
     }

@@ -34,12 +34,13 @@
                         .card
                             .card-header Dashboard
                             .card-body
-                                transactions(:cols="columns")
+                                transactions(:columns="columns" :data="data")
 
 </template>
 
 <script>
     import Transactions from './Transactions/Transactions.vue'
+    import {Column} from "./Transactions/Column";
 
     export default {
         components: {
@@ -47,7 +48,25 @@
         },
         data() {
             return {
-                columns: ['DataTime', 'Correspondent Name', 'Amount', 'Balance']
+                columns: [
+                    new Column('DataTime', 'performed_at'),
+                    new Column('Correspondent Name', 'name'),
+                    new Column('Amount', 'amount'),
+                    new Column('Balance', 'balance'),
+                ],
+                data: [
+                    {
+                        'performed_at': new Date(),
+                        'name': "Vasia",
+                        'amount': 1400,
+                        'balance': 2000
+                    },{
+                        'performed_at': new Date(),
+                        'name': "Alex",
+                        'amount': 400,
+                        'balance': 12
+                    },
+                ]
             }
         },
         methods: {
