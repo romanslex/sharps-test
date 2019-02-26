@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export class Column {
     constructor(name, key, type) {
         this.name = name;
@@ -31,6 +33,16 @@ Column.prototype.filter = function (data) {
                     .toString()
                     .toUpperCase()
                     .match(this.filterValue.toUpperCase()));
+        case datetimeFilter:
+            return data.filter(i => {
+                let columnDate = moment(i[this.key]).format('DD.MM.YYYY');
+                let startDate = moment(this.filterValue[0]).format('DD.MM.YYYY');
+                let endDate = moment(this.filterValue[1]).format('DD.MM.YYYY');
+
+                return columnDate === startDate
+                    || columnDate === endDate
+                    || (columnDate > startDate && columnDate < endDate);
+            });
         default:
             return data;
     }

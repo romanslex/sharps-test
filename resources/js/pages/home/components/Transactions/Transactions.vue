@@ -6,7 +6,7 @@
                     type="search"
                     v-if="column.type === 'string'"
                     v-model="column.filterValue"
-                    @input="filterInput(column)"
+                    @input="onFilterChange()"
                     placeholder="Filter"
                 )
                 date-picker(
@@ -14,7 +14,8 @@
                     v-if="column.type === 'datetime'"
                     v-model="column.filterValue"
                     lang="en"
-                    range=true
+                    range
+                    @change="onFilterChange()"
                 )
         tr
             th.header(v-for="column in columns" :key="column.name" @click="sort(column)")
@@ -67,7 +68,7 @@
                         return 0;
                     });
             },
-            filterInput() {
+            onFilterChange() {
                 let data = this.data;
                 this.columns.map(i => data = i.filter(data));
                 this.rows = data;
