@@ -2,7 +2,8 @@ export class Column {
     constructor(name, key, type) {
         this.name = name;
         this.key = key;
-        this.type = type;
+        this.type = type || '';
+        this.filterValue = '';
         this.sort = false;
         this.sortDesc = false;
     }
@@ -21,6 +22,15 @@ Column.prototype.unsort = function () {
 };
 Column.prototype.changeSortDirection = function () {
     this.sortDesc = !this.sortDesc;
+};
+Column.prototype.filter = function (data) {
+    if(this.type !== 'string')
+        return data;
+    return data
+        .filter(i => i[this.key]
+            .toString()
+            .toUpperCase()
+            .match(this.filterValue.toUpperCase()))
 };
 
 const stringFilter = 'string';

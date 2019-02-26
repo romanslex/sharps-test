@@ -5,14 +5,14 @@
                 input.form-control(
                     type="search"
                     v-if="column.type === 'string'"
-                    v-model="column.filterModel"
+                    v-model="column.filterValue"
                     @input="filterInput(column)"
                     placeholder="Filter"
                 )
                 date-picker(
                     input-class='form-control'
                     v-if="column.type === 'datetime'"
-                    v-model="column.filterModel"
+                    v-model="column.filterValue"
                     lang="en"
                     range=true
                 )
@@ -67,12 +67,10 @@
                         return 0;
                     });
             },
-            filterInput(column) {
-                this.rows = this.data
-                    .filter(i => i[column.key]
-                        .toString()
-                        .toUpperCase()
-                        .match(column.filterModel.toUpperCase()))
+            filterInput() {
+                let data = this.data;
+                this.columns.map(i => data = i.filter(data));
+                this.rows = data;
             }
         },
         created() {
