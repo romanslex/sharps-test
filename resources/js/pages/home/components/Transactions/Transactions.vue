@@ -2,7 +2,8 @@
     table.table
         tr
             th(v-for="column in columns" :key="column.key")
-                input(
+                input.form-control(
+                    type="search"
                     v-if="column.type === 'string'"
                     v-model="column.filterModel"
                     @input="filterInput(column)"
