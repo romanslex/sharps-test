@@ -9,6 +9,7 @@
                     @input="filterInput(column)"
                     placeholder="Filter"
                 )
+                date-picker(v-if="column.type === 'datetime'" v-model="column.filterModel" lang="en")
         tr
             th.header(v-for="column in columns" :key="column.name" @click="sort(column)")
                 | {{column.name}}
@@ -19,7 +20,12 @@
 </template>
 
 <script>
+    import DatePicker from 'vue2-datepicker'
+
     export default {
+        components: {
+            DatePicker,
+        },
         props: ['columns', 'data'],
         data() {
             return {

@@ -7,8 +7,12 @@ export class Column {
         this.sortDesc = false;
     }
 
-    static get columnTypeString() {
-        return columnTypeString;
+    static get stringFilter() {
+        return stringFilter;
+    }
+
+    static get datetimeFilter() {
+        return datetimeFilter;
     }
 }
 
@@ -19,4 +23,5 @@ Column.prototype.changeSortDirection = function () {
     this.sortDesc = !this.sortDesc;
 };
 
-const columnTypeString = 'string';
+const stringFilter = 'string';
+const datetimeFilter = 'datetime';
