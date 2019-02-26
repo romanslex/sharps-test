@@ -49,9 +49,9 @@
         data() {
             return {
                 columns: [
-                    new Column('DataTime', 'performed_at'),
-                    new Column('Correspondent Name', 'name'),
-                    new Column('Amount', 'amount'),
+                    new Column('DateTime', 'performed_at'),
+                    new Column('Correspondent Name', 'name', Column.columnTypeString),
+                    new Column('Amount', 'amount', Column.columnTypeString),
                     new Column('Balance', 'balance'),
                 ],
                 data: [
