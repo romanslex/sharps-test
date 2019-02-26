@@ -9,7 +9,13 @@
                     @input="filterInput(column)"
                     placeholder="Filter"
                 )
-                date-picker(v-if="column.type === 'datetime'" v-model="column.filterModel" lang="en")
+                date-picker(
+                    input-class='form-control'
+                    v-if="column.type === 'datetime'"
+                    v-model="column.filterModel"
+                    lang="en"
+                    range=true
+                )
         tr
             th.header(v-for="column in columns" :key="column.name" @click="sort(column)")
                 | {{column.name}}
@@ -80,6 +86,11 @@
 <style scoped lang="stylus">
     i
         margin-left 10px
+
     .header
         cursor pointer
+
+    .table
+        >>> svg
+            display none
 </style>
