@@ -24,13 +24,16 @@ Column.prototype.changeSortDirection = function () {
     this.sortDesc = !this.sortDesc;
 };
 Column.prototype.filter = function (data) {
-    if(this.type !== 'string')
-        return data;
-    return data
-        .filter(i => i[this.key]
-            .toString()
-            .toUpperCase()
-            .match(this.filterValue.toUpperCase()))
+    switch (this.type) {
+        case stringFilter:
+            return data
+                .filter(i => i[this.key]
+                    .toString()
+                    .toUpperCase()
+                    .match(this.filterValue.toUpperCase()));
+        default:
+            return data;
+    }
 };
 
 const stringFilter = 'string';
