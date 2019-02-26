@@ -30,10 +30,30 @@
             sort(column) {
                 if (column.sort) {
                     column.changeSortDirection();
-                    return;
+                } else {
+                    this.columns.map(i => i.unsort());
+                    column.sort = true;
                 }
-                this.columns.map(i => i.unsort());
-                column.sort = true;
+                if (column.sortDesc)
+                    this.rows.sort((a, b) => {
+                        a = a[column.key];
+                        b = b[column.key];
+                        if(typeof a === 'number')
+                            return b - a;
+                        if(typeof a === 'string')
+                            return b.localeCompare(a);
+                        return 0;
+                    });
+                else
+                    this.rows.sort((a, b) => {
+                        a = a[column.key];
+                        b = b[column.key];
+                        if(typeof a === 'number')
+                            return a - b;
+                        if(typeof a === 'string')
+                            return a.localeCompare(b);
+                        return 0;
+                    });
             },
             filterInput(column) {
                 this.rows = this.data
@@ -46,6 +66,7 @@
         created() {
             this.columns[0].sort = true;
             this.rows = this.data;
+            this.sort(this.columns[0]);
         }
     }
 </script>

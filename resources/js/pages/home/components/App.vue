@@ -65,6 +65,11 @@
                         'name': "Alex",
                         'amount': 400,
                         'balance': 12
+                    },{
+                        'performed_at': new Date(),
+                        'name': "Boris",
+                        'amount': 10,
+                        'balance': 2500
                     },
                 ]
             }
