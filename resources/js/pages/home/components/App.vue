@@ -26,7 +26,7 @@
                             ) Roman
                                 span.caret
                             .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
-                                a.dropdown-item(style="cursor: pointer") Logout
+                                a.dropdown-item(style="cursor: pointer" @click="logout") Logout
         main.py-4
             .container
                 .row.justify-content-center
@@ -38,5 +38,13 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        methods: {
+            logout() {
+                axios
+                    .post('/logout')
+                    .then(() => location.reload())
+            }
+        }
+    }
 </script>
