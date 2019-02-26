@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function redirect_guest_to_login()
     {
@@ -17,5 +19,20 @@ class LoginTest extends TestCase
 
         // assert
         $response->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function user_can_visit_home()
+    {
+        // arrange
+        $user = factory(User::class)->create();
+
+        // act
+        $response = $this
+            ->actingAs($user)
+            ->get(route('home'));
+
+        // assert
+        $response->assertOk();
     }
 }
