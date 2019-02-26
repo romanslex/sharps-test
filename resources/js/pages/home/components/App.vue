@@ -1,0 +1,42 @@
+<template lang="pug">
+    #app
+        nav.navbar.navbar-expand-md.navbar-light.navbar-laravel
+            .container
+                a.navbar-brand(href="/")
+                    | Laravel
+                button.navbar-toggler(
+                    type='button'
+                    data-toggle='collapse'
+                    data-target='#navbarSupportedContent'
+                    aria-controls='navbarSupportedContent'
+                    aria-expanded='false'
+                    aria-label="Toggle navigation"
+                )
+                    span.navbar-toggler-icon
+                #navbarSupportedContent.collapse.navbar-collapse
+                    ul.navbar-nav.mr-auto
+                    ul.navbar-nav.ml-auto
+                        li.nav-item.dropdown
+                            a#navbarDropdown.nav-link.dropdown-toggle(
+                                href='#' role='button'
+                                data-toggle='dropdown'
+                                aria-haspopup='true'
+                                aria-expanded='false'
+                                v-pre=''
+                            ) Roman
+                                span.caret
+                            .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+                                a.dropdown-item(style="cursor: pointer") Logout
+        main.py-4
+            .container
+                .row.justify-content-center
+                    .col-md-8
+                        .card
+                            .card-header Dashboard
+                            .card-body You are logged in!
+
+</template>
+
+<script>
+    export default {}
+</script>
