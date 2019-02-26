@@ -33,12 +33,23 @@
                     .col-md-8
                         .card
                             .card-header Dashboard
-                            .card-body You are logged in!
+                            .card-body
+                                transactions(:cols="columns")
 
 </template>
 
 <script>
+    import Transactions from './Transactions/Transactions.vue'
+
     export default {
+        components: {
+            Transactions,
+        },
+        data() {
+            return {
+                columns: ['DataTime', 'Correspondent Name', 'Amount', 'Balance']
+            }
+        },
         methods: {
             logout() {
                 axios
