@@ -30,11 +30,12 @@
         main.py-4
             .container
                 .row.justify-content-center
-                    .col-md-12
+                    .col-md-8
                         .card
                             .card-header Dashboard
                             .card-body
                                 transactions(:columns="columns" :data="transactions")
+                    .col-md-4 Form gonna be here
 
 </template>
 
