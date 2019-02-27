@@ -35,18 +35,24 @@
                             .card-header Dashboard
                             .card-body
                                 transactions(:columns="columns" :data="transactions")
-                    .col-md-4 Form gonna be here
+                    .col-md-4
+                        .card
+                            .card-header Create transaction
+                            .card-body
+                                create-transaction-form
 
 </template>
 
 <script>
-    import Transactions from './Transactions/Transactions.vue'
+    import Transactions from './Transactions/Transactions.vue';
     import {Column} from "./Transactions/Column";
+    import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
         props: ['transactions'],
         components: {
             Transactions,
+            CreateTransactionForm,
         },
         data() {
             return {
