@@ -30,15 +30,51 @@
         main.py-4
             .container
                 .row.justify-content-center
-                    .col-md-8
+                    .col-md-12
                         .card
                             .card-header Dashboard
-                            .card-body You are logged in!
+                            .card-body
+                                transactions(:columns="columns" :data="transactions")
 
 </template>
 
 <script>
+    import Transactions from './Transactions/Transactions.vue'
+    import {Column} from "./Transactions/Column";
+
     export default {
+        props: ['transactions'],
+        components: {
+            Transactions,
+        },
+        data() {
+            return {
+                columns: [
+                    new Column('DateTime', 'performed_at', Column.datetimeFilter),
+                    new Column('Correspondent Name', 'name', Column.stringFilter),
+                    new Column('Amount', 'amount', Column.stringFilter),
+                    new Column('Balance', 'balance'),
+                ],
+                data: [
+                    {
+                        'performed_at': new Date(),
+                        'name': "Vasia",
+                        'amount': 1400,
+                        'balance': 2000
+                    },{
+                        'performed_at': new Date(),
+                        'name': "Alex",
+                        'amount': 400,
+                        'balance': 12
+                    },{
+                        'performed_at': new Date(),
+                        'name': "Boris",
+                        'amount': 10,
+                        'balance': 2500
+                    },
+                ]
+            }
+        },
         methods: {
             logout() {
                 axios

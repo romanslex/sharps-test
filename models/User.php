@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function outboundTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'payer_id');
+    }
+
+    public function inboundTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'recipient_id');
+    }
+
+
 }
