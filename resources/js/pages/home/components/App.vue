@@ -34,7 +34,7 @@
                         .card
                             .card-header Dashboard
                             .card-body
-                                transactions(:columns="columns" :data="data")
+                                transactions(:columns="columns" :data="transactions")
 
 </template>
 
@@ -43,6 +43,7 @@
     import {Column} from "./Transactions/Column";
 
     export default {
+        props: ['transactions'],
         components: {
             Transactions,
         },

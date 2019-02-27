@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ViewModels\HomeViewModel;
 use Illuminate\Http\Request;
+use Models\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()
+            ->user()
+            ->with(['outboundTransactions.recipient', 'inboundTransactions'])
+            ->firstOrFail();
+
+        $viewModel = new HomeViewModel(
+            $user,
+            $user->outboundTransactions,
+            $user->inboundTransactions
+        );
+        return view('home', ['vm' => $viewModel]);
     }
 }
