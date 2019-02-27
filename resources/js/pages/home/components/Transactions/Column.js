@@ -25,6 +25,30 @@ Column.prototype.unsort = function () {
 Column.prototype.changeSortDirection = function () {
     this.sortDesc = !this.sortDesc;
 };
+Column.prototype.sortData = function (data) {
+    let result = data.slice();
+    if (this.sortDesc)
+        result.sort((a, b) => {
+            a = a[this.key];
+            b = b[this.key];
+            if(typeof a === 'number')
+                return b - a;
+            if(typeof a === 'string')
+                return b.localeCompare(a);
+            return 0;
+        });
+    else
+        result.sort((a, b) => {
+            a = a[this.key];
+            b = b[this.key];
+            if(typeof a === 'number')
+                return a - b;
+            if(typeof a === 'string')
+                return a.localeCompare(b);
+            return 0;
+        });
+    return result;
+};
 Column.prototype.filter = function (data) {
     switch (this.type) {
         case stringFilter:
