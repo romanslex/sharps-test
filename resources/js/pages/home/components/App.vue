@@ -72,6 +72,6 @@
                     .post('/logout')
                     .then(() => location.reload())
             }
-        }
+        },
     }
 </script>

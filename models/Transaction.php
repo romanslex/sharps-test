@@ -43,5 +43,8 @@ class Transaction extends Model
                 'performed_at' => now()
             ]);
         });
+        return $payer->outboundTransactions()
+            ->orderBy('id', 'desc')
+            ->first();
     }
 }
