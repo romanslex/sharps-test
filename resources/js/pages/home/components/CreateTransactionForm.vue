@@ -11,15 +11,17 @@
             .error(v-if="!$v.amount.integer && displayError"): small.text-danger Amount must be integer
             .error(v-if="!$v.amount.minValue && displayError"): small.text-danger
                 | Amount must be equals {{$v.amount.$params.minValue.min}} at least.
+            .error(v-if="!$v.amount.maxValue && displayError"): small.text-danger
+                | You got only {{$v.amount.$params.maxValue.max}} PW.
         button.btn.btn-primary(type="button" @click="createTransaction") Submit
 </template>
 
 <script>
     import vSelect from 'vue-select'
-    import { required, integer, minValue } from 'vuelidate/lib/validators'
+    import { required, integer, minValue, maxValue } from 'vuelidate/lib/validators'
 
     export default {
-        props: ['users'],
+        props: ['users', 'user'],
         components: {
             vSelect,
         },
@@ -31,15 +33,19 @@
                 displayError: false
             }
         },
-        validations: {
-            recipient: {
-                required,
-            },
-            amount: {
-                required,
-                integer,
-                minValue: minValue(1)
+        validations() {
+            return {
+                recipient: {
+                    required,
+                },
+                amount: {
+                    required,
+                    integer,
+                    minValue: minValue(1),
+                    maxValue: maxValue(this.user.balance)
+                }
             }
+
         },
         methods: {
             createTransaction() {
