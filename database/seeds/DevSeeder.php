@@ -14,8 +14,9 @@ class DevSeeder extends Seeder
      */
     public function run()
     {
-        $this->createMainUser();
+        $mainUser = $this->createMainUser();
         $users = factory(User::class, 9)->create();
+        $users[] = $mainUser;
 
         foreach($users as $payer)
         {
@@ -32,7 +33,7 @@ class DevSeeder extends Seeder
     }
 
     public function createMainUser(){
-        factory(User::class)->create([
+        return factory(User::class)->create([
             'name' => 'Roman',
             'email' => 'example@mail.ru',
             'password' => Hash::make('secret')
