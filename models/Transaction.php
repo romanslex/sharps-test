@@ -27,7 +27,7 @@ class Transaction extends Model
     {
         \DB::transaction(function() use ($payer, $recipient, $amount) {
             if($payer->balance < $amount)
-                throw new NotEnoughMoneyException();
+                throw new NotEnoughMoneyException('Not enough money for this action');
 
             $payer->balance -= $amount;
             $recipient->balance += $amount;
