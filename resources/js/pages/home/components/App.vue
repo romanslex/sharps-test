@@ -30,22 +30,29 @@
         main.py-4
             .container
                 .row.justify-content-center
-                    .col-md-12
+                    .col-md-8
                         .card
                             .card-header Dashboard
                             .card-body
                                 transactions(:columns="columns" :data="transactions")
+                    .col-md-4
+                        .card
+                            .card-header Create transaction
+                            .card-body
+                                create-transaction-form(:users="users")
 
 </template>
 
 <script>
-    import Transactions from './Transactions/Transactions.vue'
+    import Transactions from './Transactions/Transactions.vue';
     import {Column} from "./Transactions/Column";
+    import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
         props: ['transactions'],
         components: {
             Transactions,
+            CreateTransactionForm,
         },
         data() {
             return {
@@ -55,24 +62,11 @@
                     new Column('Amount', 'amount', Column.stringFilter),
                     new Column('Balance', 'balance'),
                 ],
-                data: [
-                    {
-                        'performed_at': new Date(),
-                        'name': "Vasia",
-                        'amount': 1400,
-                        'balance': 2000
-                    },{
-                        'performed_at': new Date(),
-                        'name': "Alex",
-                        'amount': 400,
-                        'balance': 12
-                    },{
-                        'performed_at': new Date(),
-                        'name': "Boris",
-                        'amount': 10,
-                        'balance': 2500
-                    },
-                ]
+                users: [
+                    {label: 'Maximilian O\'Keefe', value: 1},
+                    {label: 'Cristian Jenkins', value: 2},
+                    {label: 'Blake Rosenbaum', value: 3},
+                ],
             }
         },
         methods: {
