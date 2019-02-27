@@ -49,7 +49,7 @@
     import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
-        props: ['transactions'],
+        props: ['transactions', 'user'],
         components: {
             Transactions,
             CreateTransactionForm,

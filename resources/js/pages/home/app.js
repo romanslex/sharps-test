@@ -5,7 +5,8 @@ import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate);
 
 let transactions = JSON.parse(document.getElementById('app').dataset['transactions']);
+let user = JSON.parse(document.getElementById('app').dataset['user']);
 
 const app = new Vue({
-    render: h => h(App, {props: {transactions}})
+    render: h => h(App, {props: {transactions, user}})
 }).$mount('#app');

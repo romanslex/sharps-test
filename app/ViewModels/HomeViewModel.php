@@ -2,16 +2,28 @@
 
 namespace App\ViewModels;
 
+use Models\User;
+
 class HomeViewModel
 {
+    public $user;
     public $transactions;
 
-    public function __construct($outboundTransactions, $inboundTransactions)
+    public function __construct(User $user, $outboundTransactions, $inboundTransactions)
     {
+        $this->user = $this->initUser($user);
         $this->transactions = $this->initTransactions(
             $outboundTransactions,
             $inboundTransactions
         );
+    }
+
+    private function initUser($user)
+    {
+        return [
+            'name' => $user->name,
+            'balance' => $user->balance,
+        ];
     }
 
     private function initTransactions($outboundTransactions, $inboundTransactions)

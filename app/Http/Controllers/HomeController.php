@@ -31,6 +31,7 @@ class HomeController extends Controller
             ->firstOrFail();
 
         $viewModel = new HomeViewModel(
+            $user,
             $user->outboundTransactions,
             $user->inboundTransactions
         );
