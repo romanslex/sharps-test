@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $guarded = [];
-   
+
     public $timestamps = false;
 
     protected $dates = ['performed_at'];
