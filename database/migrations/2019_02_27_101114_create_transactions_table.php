@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('payer_id')->unsigned();
             $table->integer('recipient_id')->unsigned();
             $table->integer('amount')->unsigned();
+            $table->integer('balance')->unsigned();
             $table->timestamp('performed_at');
 
             $table->foreign('payer_id')
