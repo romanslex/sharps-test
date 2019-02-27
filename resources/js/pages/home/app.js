@@ -2,17 +2,14 @@ require('../../bootstrap');
 import Vue from 'vue'
 import App from './components/App.vue'
 import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate);
 
-let transactions = JSON.parse(document.getElementById('app').dataset['transactions']);
-let user = JSON.parse(document.getElementById('app').dataset['user']);
-let users = JSON.parse(document.getElementById('app').dataset['users']);
+Vue.use(Vuelidate);
+import store from './store';
 
 const app = new Vue({
-    render: h => h(App, {
-        props: {
-            transactions,
-            user,
-            users
-        }})
+    store,
+    render: h => h(App),
+    created() {
+        this.$store.dispatch("initState");
+    }
 }).$mount('#app');
