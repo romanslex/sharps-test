@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Models\Transaction;
 use Models\User;
-use mysql_xdevapi\Exception;
 
 class TransactionController extends Controller
 {
@@ -13,7 +12,7 @@ class TransactionController extends Controller
     {
         $request->validate([
             'recipient' => 'required|numeric',
-            'amount' => 'required|numeric'
+            'amount' => 'required|numeric|min:1'
         ]);
 
         $user = auth()->user()->firstOrFail();
