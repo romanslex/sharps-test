@@ -34,7 +34,7 @@ class HomeViewModel
                 'performed_at' => $item->performed_at->format('Y-m-d H:i'),
                 'name' => $item->recipient->name,
                 'amount' => $item->amount,
-                'balance' => 0
+                'balance' => $item->balance
             ];
         });
     }
@@ -46,7 +46,7 @@ class HomeViewModel
                 'performed_at' => $item->performed_at->format('Y-m-d H:i'),
                 'name' => $name,
                 'amount' => $item->amount,
-                'balance' => 0
+                'balance' => $item->balance
             ];
         });
     }
