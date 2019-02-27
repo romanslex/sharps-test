@@ -5,9 +5,17 @@
                 input.form-control(
                     type="search"
                     v-if="column.type === 'string'"
-                    v-model="column.filterModel"
-                    @input="filterInput(column)"
+                    v-model="column.filterValue"
+                    @input="onFilterChange()"
                     placeholder="Filter"
+                )
+                date-picker(
+                    input-class='form-control'
+                    v-if="column.type === 'datetime'"
+                    v-model="column.filterValue"
+                    lang="en"
+                    range
+                    @change="onFilterChange()"
                 )
         tr
             th.header(v-for="column in columns" :key="column.name" @click="sort(column)")
@@ -19,7 +27,12 @@
 </template>
 
 <script>
+    import DatePicker from 'vue2-datepicker'
+
     export default {
+        components: {
+            DatePicker,
+        },
         props: ['columns', 'data'],
         data() {
             return {
@@ -55,12 +68,10 @@
                         return 0;
                     });
             },
-            filterInput(column) {
-                this.rows = this.data
-                    .filter(i => i[column.key]
-                        .toString()
-                        .toUpperCase()
-                        .match(column.filterModel.toUpperCase()))
+            onFilterChange() {
+                let data = this.data;
+                this.columns.map(i => data = i.filter(data));
+                this.rows = data;
             }
         },
         created() {
@@ -74,6 +85,11 @@
 <style scoped lang="stylus">
     i
         margin-left 10px
+
     .header
         cursor pointer
+
+    .table
+        >>> svg
+            display none
 </style>

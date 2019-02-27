@@ -30,7 +30,7 @@
         main.py-4
             .container
                 .row.justify-content-center
-                    .col-md-8
+                    .col-md-12
                         .card
                             .card-header Dashboard
                             .card-body
@@ -49,9 +49,9 @@
         data() {
             return {
                 columns: [
-                    new Column('DateTime', 'performed_at'),
-                    new Column('Correspondent Name', 'name', Column.columnTypeString),
-                    new Column('Amount', 'amount', Column.columnTypeString),
+                    new Column('DateTime', 'performed_at', Column.datetimeFilter),
+                    new Column('Correspondent Name', 'name', Column.stringFilter),
+                    new Column('Amount', 'amount', Column.stringFilter),
                     new Column('Balance', 'balance'),
                 ],
                 data: [
