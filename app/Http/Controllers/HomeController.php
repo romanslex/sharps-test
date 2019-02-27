@@ -25,9 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        \DB::listen(function($q){
-            info($q->sql);
-        });
         $user = auth()
             ->user()
             ->with(['outboundTransactions.recipient', 'inboundTransactions.payer'])
