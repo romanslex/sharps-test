@@ -5,9 +5,20 @@ export class Column {
         this.name = name;
         this.key = key;
         this.type = type || '';
-        this.filterValue = '';
         this.sort = false;
         this.sortDesc = false;
+        this.initDefaultFilterValue();
+    }
+
+    initDefaultFilterValue(){
+        switch (this.type) {
+            case datetimeFilter:
+                this.filterValue = [null, null];
+                break;
+            case stringFilter:
+                this.filterValue = '';
+                break;
+        }
     }
 
     static get stringFilter() {
@@ -58,6 +69,8 @@ Column.prototype.filter = function (data) {
                     .toUpperCase()
                     .match(this.filterValue.toUpperCase()));
         case datetimeFilter:
+            if(this.filterValue[0] === null)
+                return data;
             return data.filter(i => {
                 let columnDate = moment(i[this.key]).format('DD.MM.YYYY');
                 let startDate = moment(this.filterValue[0]).format('DD.MM.YYYY');
