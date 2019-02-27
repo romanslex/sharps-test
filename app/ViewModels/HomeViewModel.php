@@ -4,26 +4,22 @@ namespace App\ViewModels;
 
 class HomeViewModel
 {
-    public $user;
-
     public $transactions;
 
-    public function __construct($user, $outboundTransactions, $inboundTransactions)
+    public function __construct($outboundTransactions, $inboundTransactions)
     {
-        $this->user = $user;
         $this->transactions = $this->initTransactions(
             $outboundTransactions,
-            $inboundTransactions,
-            $user->name
+            $inboundTransactions
         );
     }
 
-    private function initTransactions($outboundTransactions, $inboundTransactions, $userName)
+    private function initTransactions($outboundTransactions, $inboundTransactions)
     {
         return $this
             ->getFormatOutboundTransactions($outboundTransactions)
             ->merge(
-                $this->getFormatInboundTransactions($inboundTransactions, $userName)
+                $this->getFormatInboundTransactions($inboundTransactions)
             );
     }
 
@@ -34,19 +30,21 @@ class HomeViewModel
                 'performed_at' => $item->performed_at->format('Y-m-d H:i'),
                 'name' => $item->recipient->name,
                 'amount' => $item->amount,
-                'balance' => $item->balance
+                'balance' => $item->balance,
+                'is_outbound' => true
             ];
         });
     }
 
-    private function getFormatInboundTransactions($inboundTransactions, $name)
+    private function getFormatInboundTransactions($inboundTransactions)
     {
-        return $inboundTransactions->map(function ($item) use ($name) {
+        return $inboundTransactions->map(function ($item) {
             return [
                 'performed_at' => $item->performed_at->format('Y-m-d H:i'),
-                'name' => $name,
+                'name' => $item->payer->name,
                 'amount' => $item->amount,
-                'balance' => $item->balance
+                'balance' => $item->balance,
+                'is_outbound' => false
             ];
         });
     }
