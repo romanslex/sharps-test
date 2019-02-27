@@ -39,7 +39,7 @@
                         .card
                             .card-header Create transaction
                             .card-body
-                                create-transaction-form
+                                create-transaction-form(:users="users")
 
 </template>
 
@@ -62,23 +62,8 @@
                     new Column('Amount', 'amount', Column.stringFilter),
                     new Column('Balance', 'balance'),
                 ],
-                data: [
-                    {
-                        'performed_at': new Date(),
-                        'name': "Vasia",
-                        'amount': 1400,
-                        'balance': 2000
-                    },{
-                        'performed_at': new Date(),
-                        'name': "Alex",
-                        'amount': 400,
-                        'balance': 12
-                    },{
-                        'performed_at': new Date(),
-                        'name': "Boris",
-                        'amount': 10,
-                        'balance': 2500
-                    },
+                users: [
+                    'Maximilian O\'Keefe', 'Cristian Jenkins', 'Blake Rosenbaum'
                 ]
             }
         },
