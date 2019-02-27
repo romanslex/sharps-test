@@ -27,7 +27,7 @@ class TransactionController extends Controller
             'balance' => $transaction->payer_balance,
             'is_outbound' => true,
             'name' => $transaction->recipient->name,
-            'performed_at' => $transaction->performed_at
+            'performed_at' => $transaction->performed_at->format('Y-m-d H:i'),
         ];
     }
 }
