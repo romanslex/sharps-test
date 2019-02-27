@@ -27,7 +27,8 @@ class TransactionController extends Controller
             $user->outboundTransactions()->create([
                 'recipient_id' => $recipient->id,
                 'amount' => $amount,
-                'balance' => $user->balance
+                'payer_balance' => $user->balance,
+                'recipient_balance' => $recipient->balance,
             ]);
             $recipient->save();
         });

@@ -30,7 +30,7 @@ class HomeViewModel
                 'performed_at' => $item->performed_at->format('Y-m-d H:i'),
                 'name' => $item->recipient->name,
                 'amount' => $item->amount,
-                'balance' => $item->balance,
+                'balance' => $item->payer_balance,
                 'is_outbound' => true
             ];
         });
@@ -43,7 +43,7 @@ class HomeViewModel
                 'performed_at' => $item->performed_at->format('Y-m-d H:i'),
                 'name' => $item->payer->name,
                 'amount' => $item->amount,
-                'balance' => $item->balance,
+                'balance' => $item->recipient_balance,
                 'is_outbound' => false
             ];
         });
