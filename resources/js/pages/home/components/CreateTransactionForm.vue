@@ -2,15 +2,21 @@
     form
         .form-group
             label Select a recipient
-            v-select(:options="users" placeholder="Recipient" v-model="recipient")
+            v-select(:options="users" placeholder="Recipient" v-model.trim="$v.recipient.$model")
+            .error(v-if="!$v.recipient.required && displayError"): small.text-danger Field is required
         .form-group
             label(for='exampleInputEmail1') Amount PW to send
-            input#amount.form-control(type='text' placeholder='Amount' v-model="amount")
+            input#amount.form-control(type='text' placeholder='Amount' v-model.trim="$v.amount.$model")
+            .error(v-if="!$v.amount.required && displayError"): small.text-danger Field is required
+            .error(v-if="!$v.amount.integer && displayError"): small.text-danger Amount must be integer
+            .error(v-if="!$v.amount.minValue && displayError"): small.text-danger
+                | Amount must be equals {{$v.amount.$params.minValue.min}} at least.
         button.btn.btn-primary(type="button" @click="createTransaction") Submit
 </template>
 
 <script>
     import vSelect from 'vue-select'
+    import { required, integer, minValue } from 'vuelidate/lib/validators'
 
     export default {
         props: ['users'],
@@ -20,11 +26,29 @@
         data() {
             return {
                 recipient: null,
-                amount: ''
+                amount: '',
+
+                displayError: false
+            }
+        },
+        validations: {
+            recipient: {
+                required,
+            },
+            amount: {
+                required,
+                integer,
+                minValue: minValue(1)
             }
         },
         methods: {
             createTransaction() {
+                this.displayError = false;
+                if(this.$v.$invalid){
+                    this.displayError = true;
+                    return false;
+                }
+
                 axios
                     .post('/data/transactions', {
                         recipient: this.recipient.value,
