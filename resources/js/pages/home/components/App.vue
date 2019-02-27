@@ -41,7 +41,7 @@
                         .card
                             .card-header Create transaction
                             .card-body
-                                create-transaction-form(:users="users")
+                                create-transaction-form(:users="users" :user="user")
 
 </template>
 
