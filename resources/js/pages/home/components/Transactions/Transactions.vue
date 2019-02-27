@@ -72,6 +72,7 @@
         created() {
             this.currentSortColumn = this.columns[0];
             this.currentSortColumn.sort = true;
+            this.currentSortColumn.sortDesc = true;
             this.rows = this.data;
             this.sort(this.currentSortColumn);
         }
