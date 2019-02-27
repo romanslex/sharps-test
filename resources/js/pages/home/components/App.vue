@@ -16,14 +16,16 @@
                 #navbarSupportedContent.collapse.navbar-collapse
                     ul.navbar-nav.mr-auto
                     ul.navbar-nav.ml-auto
+                        li.nav-item: a.nav-link
+                            | Balance: {{user.balance}} PW
                         li.nav-item.dropdown
                             a#navbarDropdown.nav-link.dropdown-toggle(
                                 href='#' role='button'
                                 data-toggle='dropdown'
                                 aria-haspopup='true'
                                 aria-expanded='false'
-                                v-pre=''
-                            ) Roman
+                            )
+                                | {{user.name}}
                                 span.caret
                             .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
                                 a.dropdown-item(style="cursor: pointer" @click="logout") Logout
