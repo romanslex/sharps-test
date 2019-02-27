@@ -2,6 +2,7 @@
 
 namespace Models;
 
+use App\Exceptions\NotEnoughMoneyException;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -25,6 +26,9 @@ class Transaction extends Model
     public static function createRemittance($payer, $recipient, $amount)
     {
         \DB::transaction(function() use ($payer, $recipient, $amount) {
+            if($payer->balance < $amount)
+                throw new NotEnoughMoneyException();
+
             $payer->balance -= $amount;
             $recipient->balance += $amount;
 
@@ -36,6 +40,7 @@ class Transaction extends Model
                 'amount' => $amount,
                 'payer_balance' => $payer->balance,
                 'recipient_balance' => $recipient->balance,
+                'performed_at' => now()
             ]);
         });
     }
