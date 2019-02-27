@@ -26,4 +26,20 @@ class TransactionTest extends TestCase
         // act
         Transaction::createRemittance($payer, $recipient, 400);
     }
+
+    /** @test */
+    public function createRemittance_must_succeed()
+    {
+        // arrange
+        $payer = factory(User::class)->create(['name' => 'payer', 'balance' => 200]);
+        $recipient = factory(User::class)->create(['name' => 'recipient', 'balance' => 200]);
+
+        // act
+        Transaction::createRemittance($payer, $recipient, 100);
+
+        // assert
+        $this->assertDatabaseHas('users', ['name' => 'payer', 'balance' => 100]);
+        $this->assertDatabaseHas('users', ['name' => 'recipient', 'balance' => 300]);
+        $this->assertDatabaseHas('transactions', ['id' => 1]);
+    }
 }
