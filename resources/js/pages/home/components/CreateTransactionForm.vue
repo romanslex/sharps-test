@@ -21,7 +21,6 @@
     import { required, integer, minValue, maxValue } from 'vuelidate/lib/validators'
 
     export default {
-        props: ['users', 'user'],
         components: {
             vSelect,
         },
@@ -46,6 +45,14 @@
                 }
             }
 
+        },
+        computed: {
+            users() {
+                return this.$store.state.users
+            },
+            user() {
+                return this.$store.state.user
+            }
         },
         methods: {
             createTransaction() {

@@ -36,12 +36,12 @@
                         .card
                             .card-header Dashboard
                             .card-body
-                                transactions(:columns="columns" :data="transactions")
+                                transactions(:columns="columns")
                     .col-md-4
                         .card
                             .card-header Create transaction
                             .card-body
-                                create-transaction-form(:users="users" :user="user")
+                                create-transaction-form
 
 </template>
 
@@ -51,7 +51,6 @@
     import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
-        props: ['transactions', 'user', 'users'],
         components: {
             Transactions,
             CreateTransactionForm,
@@ -64,6 +63,11 @@
                     new Column('Amount', 'amount', Column.stringFilter),
                     new Column('Balance', 'balance'),
                 ],
+            }
+        },
+        computed: {
+            user() {
+                return this.$store.state.user
             }
         },
         methods: {

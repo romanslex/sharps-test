@@ -33,10 +33,15 @@
         components: {
             DatePicker,
         },
-        props: ['columns', 'data'],
+        props: ['columns'],
         data() {
             return {
                 rows: []
+            }
+        },
+        computed: {
+            data() {
+                return this.$store.state.transactions
             }
         },
         methods: {
