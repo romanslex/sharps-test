@@ -2,11 +2,11 @@
     form
         .form-group
             label Select a recipient
-            v-select(:options="users" placeholder="Recipient")
+            v-select(:options="users" placeholder="Recipient" v-model="recipient")
         .form-group
             label(for='exampleInputEmail1') Amount PW to send
-            input#amount.form-control(type='text' placeholder='Amount')
-        button.btn.btn-primary(type='submit') Submit
+            input#amount.form-control(type='text' placeholder='Amount' v-model="amount")
+        button.btn.btn-primary(type="button" @click="createTransaction") Submit
 </template>
 
 <script>
@@ -16,6 +16,23 @@
         props: ['users'],
         components: {
             vSelect,
+        },
+        data() {
+            return {
+                recipient: null,
+                amount: ''
+            }
+        },
+        methods: {
+            createTransaction() {
+                axios
+                    .post('/data/transactions', {
+                        recipient: this.recipient.value,
+                        amount: this.amount
+                    })
+                    .then(response => console.log(response))
+                    .catch(error => console.log(error));
+            }
         }
     }
 </script>

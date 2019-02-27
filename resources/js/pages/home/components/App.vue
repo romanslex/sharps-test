@@ -63,8 +63,10 @@
                     new Column('Balance', 'balance'),
                 ],
                 users: [
-                    'Maximilian O\'Keefe', 'Cristian Jenkins', 'Blake Rosenbaum'
-                ]
+                    {label: 'Maximilian O\'Keefe', value: 1},
+                    {label: 'Cristian Jenkins', value: 2},
+                    {label: 'Blake Rosenbaum', value: 3},
+                ],
             }
         },
         methods: {
