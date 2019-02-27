@@ -57,18 +57,15 @@
         methods: {
             createTransaction() {
                 this.displayError = false;
-                if(this.$v.$invalid){
+                if (this.$v.$invalid) {
                     this.displayError = true;
                     return false;
                 }
 
-                axios
-                    .post('/data/transactions', {
-                        recipient: this.recipient.value,
-                        amount: this.amount
-                    })
-                    .then(response => console.log(response))
-                    .catch(error => console.log(error));
+                this.$store.dispatch('createTransaction', {
+                    recipient: this.recipient.value,
+                    amount: this.amount
+                }).catch(error => console.log(error));
             }
         }
     }

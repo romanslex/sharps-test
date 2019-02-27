@@ -14,6 +14,14 @@ const store = new Vuex.Store({
             state.transactions = payload.transactions;
             state.users = payload.users;
             state.user = payload.user;
+        },
+        createTransaction(state, payload){
+            let transactions = state.transactions.slice();
+            transactions.push(payload);
+            state.transactions = transactions;
+        },
+        setUserBalance(state, balance){
+            state.user.balance = balance;
         }
     },
     actions: {
@@ -27,6 +35,18 @@ const store = new Vuex.Store({
                 users,
                 user
             })
+        },
+        createTransaction({commit}, transaction){
+            return new Promise((resolve, reject) => {
+                axios
+                    .post('/data/transactions', transaction)
+                    .then(response => {
+                        commit('createTransaction', response.data);
+                        commit('setUserBalance', response.data.balance);
+                        console.log(response.data)
+                    })
+                    .catch(error => reject(error));
+            });
         }
     }
 });

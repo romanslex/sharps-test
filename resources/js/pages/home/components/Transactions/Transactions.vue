@@ -18,7 +18,7 @@
                     @change="onFilterChange()"
                 )
         tr
-            th.header(v-for="column in columns" :key="column.name" @click="sort(column)")
+            th.header(v-for="column in columns" :key="column.name" @click="onSortClick(column)")
                 | {{column.name}}
                 i.fas.fa-sort-amount-up(v-show="column.sort && !column.sortDesc")
                 i.fas.fa-sort-amount-down(v-show="column.sort && column.sortDesc")
@@ -36,7 +36,8 @@
         props: ['columns'],
         data() {
             return {
-                rows: []
+                rows: [],
+                currentSortColumn: null
             }
         },
         computed: {
@@ -44,26 +45,35 @@
                 return this.$store.state.transactions
             }
         },
+        watch: {
+            data(){
+                this.onFilterChange();
+            }
+        },
         methods: {
-            sort(column) {
-                if (column.sort) {
+            onSortClick(column) {
+                if (column.sort)
                     column.changeSortDirection();
-                } else {
-                    this.columns.map(i => i.unsort());
-                    column.sort = true;
-                }
+                this.sort(column);
+            },
+            sort(column) {
+                this.columns.map(i => i.unsort());
+                column.sort = true;
+                this.currentSortColumn = column;
                 this.rows = column.sortData(this.rows);
             },
             onFilterChange() {
                 let data = this.data;
                 this.columns.map(i => data = i.filter(data));
                 this.rows = data;
+                this.sort(this.currentSortColumn);
             }
         },
         created() {
-            this.columns[0].sort = true;
+            this.currentSortColumn = this.columns[0];
+            this.currentSortColumn.sort = true;
             this.rows = this.data;
-            this.sort(this.columns[0]);
+            this.sort(this.currentSortColumn);
         }
     }
 </script>
