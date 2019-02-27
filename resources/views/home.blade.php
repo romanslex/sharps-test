@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
 </head>
 <body>
-<div id="app">
+<div id="app" data-transactions="{{json_encode($transactions)}}">
 
 </div>
 <script src="{{asset('js/home.js')}}"></script>
