@@ -7,11 +7,13 @@ use Models\User;
 class HomeViewModel
 {
     public $user;
+    public $users;
     public $transactions;
 
-    public function __construct(User $user, $outboundTransactions, $inboundTransactions)
+    public function __construct(User $user, $users, $outboundTransactions, $inboundTransactions)
     {
         $this->user = $this->initUser($user);
+        $this->users = $this->initUsers($users);
         $this->transactions = $this->initTransactions(
             $outboundTransactions,
             $inboundTransactions
@@ -24,6 +26,16 @@ class HomeViewModel
             'name' => $user->name,
             'balance' => $user->balance,
         ];
+    }
+
+    private function initUsers($users)
+    {
+        return $users->map(function ($user) {
+            return [
+                'label' => $user->name,
+                'value' => $user->id
+            ];
+        });
     }
 
     private function initTransactions($outboundTransactions, $inboundTransactions)

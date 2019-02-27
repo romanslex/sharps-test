@@ -51,7 +51,7 @@
     import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
-        props: ['transactions', 'user'],
+        props: ['transactions', 'user', 'users'],
         components: {
             Transactions,
             CreateTransactionForm,
@@ -63,11 +63,6 @@
                     new Column('Correspondent Name', 'name', Column.stringFilter),
                     new Column('Amount', 'amount', Column.stringFilter),
                     new Column('Balance', 'balance'),
-                ],
-                users: [
-                    {label: 'Maximilian O\'Keefe', value: 1},
-                    {label: 'Cristian Jenkins', value: 2},
-                    {label: 'Blake Rosenbaum', value: 3},
                 ],
             }
         },

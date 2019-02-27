@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
 </head>
 <body>
-<div id="app" data-user="{{json_encode($vm->user)}}" data-transactions="{{json_encode($vm->transactions)}}">
+<div id="app"
+     data-user="{{json_encode($vm->user)}}"
+     data-transactions="{{json_encode($vm->transactions)}}"
+     data-users="{{json_encode($vm->users)}}">
 
 </div>
 <script src="{{asset('js/home.js')}}"></script>

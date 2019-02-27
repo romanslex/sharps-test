@@ -30,8 +30,11 @@ class HomeController extends Controller
             ->with(['outboundTransactions.recipient', 'inboundTransactions.payer'])
             ->firstOrFail();
 
+        $users = User::all()->except($user->id);
+
         $viewModel = new HomeViewModel(
             $user,
+            $users,
             $user->outboundTransactions,
             $user->inboundTransactions
         );
