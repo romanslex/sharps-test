@@ -28,7 +28,7 @@
                     th Banned
                 tr(v-for="user in rows" :key="user.id")
                     td {{user.id}}
-                    td {{user.name}}
+                    td: router-link(:to="'/admin/users/' + user.id") {{user.name}}
                     td {{user.email}}
                     td {{user.balance}}
                     td

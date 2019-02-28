@@ -8,15 +8,18 @@ const store = new Vuex.Store({
         users: [],
     },
     mutations: {
-        initState(state, payload){
+        initState(state, payload) {
             state.users = payload;
         }
     },
     actions: {
-        initState({commit}){
+        initState({commit}) {
             let users = JSON.parse(document.getElementById('app').dataset['users']);
             commit('initState', users);
         }
+    },
+    getters: {
+        user: state => id => state.users.find(i => i.id === parseInt(id))
     }
 });
 
