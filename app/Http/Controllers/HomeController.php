@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RedirectIfAdmin;
 use App\ViewModels\HomeViewModel;
 use Illuminate\Http\Request;
 use Models\User;
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', RedirectIfAdmin::class]);
     }
 
     /**
@@ -28,7 +29,7 @@ class HomeController extends Controller
         $user = User::with(['outboundTransactions.recipient', 'inboundTransactions.payer'])
             ->findOrFail(auth()->user()->id);
 
-        $users = User::all()->except($user->id);
+        $users = User::allExceptAdmin()->except($user->id);
 
         $viewModel = new HomeViewModel(
             $user,

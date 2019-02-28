@@ -36,7 +36,7 @@
                         .card
                             .card-header Transactions
                             .card-body
-                                transactions(:columns="columns")
+                                transactions
                     .col-md-4
                         .card
                             .card-header Create transaction
@@ -46,24 +46,13 @@
 </template>
 
 <script>
-    import Transactions from './Transactions/Transactions.vue';
-    import {Column} from "./Transactions/Column";
+    import Transactions from './Transactions.vue';
     import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
         components: {
             Transactions,
             CreateTransactionForm,
-        },
-        data() {
-            return {
-                columns: [
-                    new Column('DateTime', 'performed_at', Column.datetimeFilter),
-                    new Column('Correspondent Name', 'name', Column.stringFilter),
-                    new Column('Amount', 'amount', Column.stringFilter),
-                    new Column('Balance', 'balance'),
-                ],
-            }
         },
         computed: {
             user() {

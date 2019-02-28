@@ -38,17 +38,23 @@
 
 <script>
     import DatePicker from 'vue2-datepicker'
-    import {EventBus} from '../../../../event-bus'
+    import {EventBus} from '../../../event-bus'
+    import {sortableFilterableTableMixin} from "../../shared/sortable-filterable-table";
+    import {Column} from "../../shared/Column";
 
     export default {
+        mixins: [sortableFilterableTableMixin],
         components: {
             DatePicker,
         },
-        props: ['columns'],
         data() {
             return {
-                rows: [],
-                currentSortColumn: null
+                columns: [
+                    new Column('DateTime', 'performed_at', Column.datetimeFilter),
+                    new Column('Correspondent Name', 'name', Column.stringFilter),
+                    new Column('Amount', 'amount', Column.stringFilter),
+                    new Column('Balance', 'balance'),
+                ]
             }
         },
         computed: {
@@ -62,23 +68,6 @@
             }
         },
         methods: {
-            onSortClick(column) {
-                if (column.sort)
-                    column.changeSortDirection();
-                this.sort(column);
-            },
-            sort(column) {
-                this.columns.map(i => i.unsort());
-                column.sort = true;
-                this.currentSortColumn = column;
-                this.rows = column.sortData(this.rows);
-            },
-            onFilterChange() {
-                let data = this.data;
-                this.columns.map(i => data = i.filter(data));
-                this.rows = data;
-                this.sort(this.currentSortColumn);
-            },
             copy(row) {
                 EventBus.$emit('copy-transaction', {
                     name: row.name,
@@ -87,13 +76,6 @@
                 });
             }
         },
-        created() {
-            this.currentSortColumn = this.columns[0];
-            this.currentSortColumn.sort = true;
-            this.currentSortColumn.sortDesc = true;
-            this.rows = this.data;
-            this.sort(this.currentSortColumn);
-        }
     }
 </script>
 

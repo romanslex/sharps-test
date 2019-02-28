@@ -2,12 +2,15 @@
 
 namespace Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ADMIN_ID = 1;
+
     use Notifiable;
 
     /**
@@ -16,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'balance'
+        'name', 'email', 'password', 'balance', 'is_banned'
     ];
 
     /**
@@ -47,5 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class, 'recipient_id');
     }
 
+    public function scopeAllExceptAdmin(Builder $q)
+    {
+        return $q->where('id', '!=', self::ADMIN_ID)->get();
+    }
 
 }
