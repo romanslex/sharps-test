@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('balance')->unsigned();
+            $table->boolean('is_banned');
             $table->rememberToken();
             $table->timestamps();
         });
