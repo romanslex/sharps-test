@@ -8,10 +8,10 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: "history",
     routes: [
-        { path: "/admin", redirect: "/admin/users" },
         { path: "/admin/users/:id", component: UserEditPage},
         { path: "/admin/users", component: UsersPage},
         { path: "/admin/transactions", component: TransactionsPage},
+        { path: "/admin*", redirect: "/admin/users" }
     ]
 });
 

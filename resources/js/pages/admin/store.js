@@ -44,7 +44,12 @@ const store = new Vuex.Store({
         }
     },
     getters: {
-        user: state => id => state.users.find(i => i.id === parseInt(id))
+        user: state => id => {
+            let user = state.users.find(i => i.id === parseInt(id));
+            if(typeof user === 'undefined')
+                throw Error();
+            return user;
+        }
     }
 });
 

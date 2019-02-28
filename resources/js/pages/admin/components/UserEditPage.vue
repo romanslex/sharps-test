@@ -52,9 +52,14 @@
             }
         },
         created() {
-            this.user = Object.assign({}, this.$store.getters.user(
-                this.$route.params.id
-            ))
+            try {
+                this.user = Object.assign({}, this.$store.getters.user(
+                    this.$route.params.id
+                ));
+            } catch (e) {
+                this.$router.push('/admin/users');
+            }
+
         }
     }
 </script>
