@@ -3,7 +3,7 @@
         nav.navbar.navbar-expand-md.navbar-light.navbar-laravel
             .container
                 a.navbar-brand(href="/")
-                    | Laravel
+                    | Sharps
                 button.navbar-toggler(
                     type='button'
                     data-toggle='collapse'
@@ -34,7 +34,7 @@
                 .row.justify-content-center
                     .col-md-8
                         .card
-                            .card-header Dashboard
+                            .card-header Transactions
                             .card-body
                                 transactions(:columns="columns")
                     .col-md-4
