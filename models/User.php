@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ADMIN_ID = 1;
+
     use Notifiable;
 
     /**
@@ -50,7 +52,7 @@ class User extends Authenticatable
 
     public function scopeAllExceptAdmin(Builder $q)
     {
-        return $q->where('id', '!=', 1)->get();
+        return $q->where('id', '!=', self::ADMIN_ID)->get();
     }
 
 }

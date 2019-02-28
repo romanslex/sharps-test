@@ -17,7 +17,7 @@ class TransactionController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'recipient' => 'required|numeric',
+            'recipient' => 'required|numeric|not_in:' . User::ADMIN_ID,
             'amount' => 'required|numeric|min:1'
         ]);
 
