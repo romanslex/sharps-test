@@ -2,6 +2,10 @@
     .card
         .card-header Edit user - {{user.name}}
         .card-body
+            .error-block.alert.alert-danger(v-show="showErrorBlock")
+                .error-item During saving error has been occurred
+            .succes-block.alert.alert-success(v-show="showSuccessBlock")
+                .success-item Changes successfully saved
             table.table
                 tr
                     td Name
@@ -16,11 +20,18 @@
                 input(type="checkbox" v-model="user.is_banned" style="margin-right: 10px")
                 | Banned
         .card-footer
-            button.btn.btn-primary(@click="changeUser") Save changes
+            button.btn.btn-primary(@click="changeUser" :disabled="isBtnLocked") Save changes
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                showErrorBlock: false,
+                showSuccessBlock: false,
+                isBtnLocked: false
+            }
+        },
         computed: {
             user() {
                 return this.$store.getters.user(
@@ -30,7 +41,20 @@
         },
         methods: {
             changeUser(){
-                console.log(this.user)
+                this.showErrorBlock = false;
+                this.showSuccessBlock = false;
+                this.isBtnLocked = true;
+
+                this.$store
+                    .dispatch("changeUser", this.user)
+                    .then(() => {
+                        this.showSuccessBlock = true;
+                        this.isBtnLocked = false;
+                    })
+                    .catch(error => {
+                        this.showErrorBlock = true;
+                        this.isBtnLocked = false;
+                    })
             }
         }
     }
