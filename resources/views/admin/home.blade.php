@@ -11,11 +11,12 @@
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
 </head>
 <body>
 <div id="app">
 
 </div>
+<script src="{{asset('js/admin.js')}}"></script>
 </body>
 </html>

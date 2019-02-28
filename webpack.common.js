@@ -4,7 +4,8 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
     entry: {
-        'home': './resources/js/pages/home/app.js'
+        'home': './resources/js/pages/home/app.js',
+        'admin': './resources/js/pages/admin/app.js',
     },
     output: {
         filename: "js/[name].js",
