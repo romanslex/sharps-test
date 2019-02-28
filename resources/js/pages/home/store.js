@@ -56,6 +56,7 @@ const store = new Vuex.Store({
                             performed_at: moment(transaction.performed_at)
                         });
                         commit('setUserBalance', response.data.balance);
+                        resolve();
                     })
                     .catch(error => reject(error));
             });

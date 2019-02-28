@@ -66,7 +66,12 @@
                 this.$store.dispatch('createTransaction', {
                     recipient: this.recipient.value,
                     amount: this.amount
-                }).catch(error => console.log(error));
+                })
+                    .then(_ => {
+                        this.recipient = null;
+                        this.amount = '';
+                    })
+                    .catch(error => console.log(error));
             }
         },
         created() {
