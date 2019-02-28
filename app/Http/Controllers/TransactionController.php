@@ -15,7 +15,7 @@ class TransactionController extends Controller
             'amount' => 'required|numeric|min:1'
         ]);
 
-        $user = auth()->user()->firstOrFail();
+        $user = User::findOrFail(auth()->user()->id);
         $recipient = User::findOrFail($request->get('recipient'));
 
         $amount = $request->get('amount');

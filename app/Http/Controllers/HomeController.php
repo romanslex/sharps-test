@@ -25,10 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()
-            ->user()
-            ->with(['outboundTransactions.recipient', 'inboundTransactions.payer'])
-            ->firstOrFail();
+        $user = User::with(['outboundTransactions.recipient', 'inboundTransactions.payer'])
+            ->findOrFail(auth()->user()->id);
 
         $users = User::all()->except($user->id);
 
