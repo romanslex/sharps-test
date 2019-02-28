@@ -26,7 +26,10 @@
         tr(v-for="(row, i) in rows" :key="i")
             td {{row.performed_at.format('DD.MM.YYYY HH:mm')}}
             td {{row.name}}
-            td {{row.amount}}
+            td
+                i.far.fa-arrow-alt-circle-down.text-danger(style="margin-right:5px" v-if="row.is_outbound")
+                i.far.fa-arrow-alt-circle-up.text-success(style="margin-right:5px" v-else)
+                | {{row.amount}}
             td {{row.balance}}
             td
                 i.far.fa-copy.copy-transaction(v-if="row.is_outbound" @click="copy(row)")
