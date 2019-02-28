@@ -7,10 +7,12 @@ const store = new Vuex.Store({
     strict: true,
     state: {
         users: [],
+        transactions: [],
     },
     mutations: {
         initState(state, payload) {
-            state.users = payload;
+            state.users = payload.users;
+            state.transactions = payload.transactions;
         },
         changeUser(state, payload) {
             let users = state.users.slice();
@@ -22,7 +24,12 @@ const store = new Vuex.Store({
     actions: {
         initState({commit}) {
             let users = JSON.parse(document.getElementById('app').dataset['users']);
-            commit('initState', users);
+            let transactions = JSON.parse(document.getElementById('app').dataset['transactions']);
+
+            commit('initState', {
+                users,
+                transactions
+            });
         },
         changeUser({commit}, user) {
             return new Promise((resolve, reject) => {

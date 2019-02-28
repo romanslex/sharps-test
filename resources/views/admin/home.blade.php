@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
 </head>
 <body>
-<div id="app" data-users="{{json_encode($users)}}">
+<div id="app" data-users="{{json_encode($users)}}" data-transactions="{{json_encode($transactions)}}">
 
 </div>
 <script src="{{asset('js/admin.js')}}"></script>

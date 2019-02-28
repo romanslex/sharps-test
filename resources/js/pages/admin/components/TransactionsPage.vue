@@ -25,24 +25,30 @@
                         | {{column.name}}
                         i.fas.fa-sort-amount-up(v-show="column.sort && !column.sortDesc")
                         i.fas.fa-sort-amount-down(v-show="column.sort && column.sortDesc")
-                tr(v-for="transaction in data" :key="transaction.id")
-    
+                tr(v-for="transaction in rows" :key="transaction.id")
+                    td {{transaction.payer}}
+                    td {{transaction.recipient}}
+                    td {{transaction.amount}}
+                    td {{transaction.performed_at}}
+
 
 </template>
 
 <script>
     import {Column} from "../../shared/Column";
     import DatePicker from 'vue2-datepicker';
+    import {sortableFilterableTableMixin} from "../../shared/sortable-filterable-table";
 
     export default {
+        mixins: [sortableFilterableTableMixin],
         components: {
             DatePicker,
         },
         data() {
             return {
                 columns: [
-                    new Column('Payer Name', 'payer_name', Column.stringFilter),
-                    new Column('Recipient Name', 'recipient_name', Column.stringFilter),
+                    new Column('Payer Name', 'payer', Column.stringFilter),
+                    new Column('Recipient Name', 'recipient', Column.stringFilter),
                     new Column('Amount, PW', 'amount', Column.stringFilter),
                     new Column('Performed At', 'performed_at', Column.datetimeFilter)
                 ]
@@ -63,4 +69,10 @@
 
         >>> .mx-datepicker-range
             width 210px
+
+        i
+            margin-left 10px
+
+        th
+            cursor pointer
 </style>
