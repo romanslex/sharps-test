@@ -51,7 +51,8 @@ class HomeViewModel
     {
         return $outboundTransactions->map(function ($item) {
             return [
-                'performed_at' => $item->performed_at->format('Y-m-d H:i'),
+                'recipient_id' => $item->recipient_id,
+                'performed_at' => $item->performed_at->format('Y-m-d H:i:s'),
                 'name' => $item->recipient->name,
                 'amount' => $item->amount,
                 'balance' => $item->payer_balance,
@@ -64,7 +65,7 @@ class HomeViewModel
     {
         return $inboundTransactions->map(function ($item) {
             return [
-                'performed_at' => $item->performed_at->format('Y-m-d H:i'),
+                'performed_at' => $item->performed_at->format('Y-m-d H:i:s'),
                 'name' => $item->payer->name,
                 'amount' => $item->amount,
                 'balance' => $item->recipient_balance,

@@ -46,6 +46,8 @@ Column.prototype.sortData = function (data) {
                 return b - a;
             if(typeof a === 'string')
                 return b.localeCompare(a);
+            if(typeof a === 'object')
+                return b.unix() - a.unix();
             return 0;
         });
     else
@@ -56,6 +58,8 @@ Column.prototype.sortData = function (data) {
                 return a - b;
             if(typeof a === 'string')
                 return a.localeCompare(b);
+            if(typeof a === 'object')
+                return a.unix() - b.unix();
             return 0;
         });
     return result;
