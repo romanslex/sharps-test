@@ -49,6 +49,7 @@ const store = new Vuex.Store({
                     .then(response => {
                         let transaction = response.data;
                         commit('createTransaction', {
+                            recipient_id: transaction.recipient_id,
                             amount: transaction.amount,
                             balance: transaction.balance,
                             is_outbound: transaction.is_outbound,

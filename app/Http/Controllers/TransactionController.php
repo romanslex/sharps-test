@@ -23,6 +23,7 @@ class TransactionController extends Controller
         $transaction = Transaction::createRemittance($user, $recipient, $amount);
 
         return [
+            'recipient_id' => $transaction->recipient->id,
             'amount' => $transaction->amount,
             'balance' => $transaction->payer_balance,
             'is_outbound' => true,
