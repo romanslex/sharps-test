@@ -36,8 +36,10 @@
 
 <script>
     import {Column} from "../../shared/Column";
+    import {sortableFilterableTableMixin} from "../../shared/sortable-filterable-table";
 
     export default {
+        mixins: [sortableFilterableTableMixin],
         data() {
             return {
                 columns: [
@@ -46,27 +48,10 @@
                     new Column('Email', 'email', Column.stringFilter),
                     new Column('Balance', 'balance', Column.stringFilter),
                 ],
-                rows: []
             }
         },
         methods: {
-            onSortClick(column) {
-                if (column.sort)
-                    column.changeSortDirection();
-                this.sort(column);
-            },
-            sort(column) {
-                this.columns.map(i => i.unsort());
-                column.sort = true;
-                this.currentSortColumn = column;
-                this.rows = column.sortData(this.rows);
-            },
-            onFilterChange() {
-                let data = this.data;
-                this.columns.map(i => data = i.filter(data));
-                this.rows = data;
-                this.sort(this.currentSortColumn);
-            },
+
         },
         computed: {
             data() {
@@ -74,10 +59,7 @@
             }
         },
         created() {
-            this.currentSortColumn = this.columns[0];
-            this.currentSortColumn.sort = true;
-            this.currentSortColumn.sortDesc = true;
-            this.rows = this.data;
+            this.currentSortColumn.sortDesc = false;
             this.sort(this.currentSortColumn);
         }
     }
