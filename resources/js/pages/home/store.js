@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex";
+import moment from 'moment';
 
 Vue.use(Vuex);
 
@@ -29,6 +30,12 @@ const store = new Vuex.Store({
             let transactions = JSON.parse(document.getElementById('app').dataset['transactions']);
             let user = JSON.parse(document.getElementById('app').dataset['user']);
             let users = JSON.parse(document.getElementById('app').dataset['users']);
+
+            transactions = transactions.map(i => {
+                i.performed_at = moment(i.performed_at);
+                return i;
+            });
+            console.log(transactions);
 
             commit('initState', {
                 transactions,

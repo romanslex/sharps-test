@@ -23,7 +23,7 @@
                 i.fas.fa-sort-amount-up(v-show="column.sort && !column.sortDesc")
                 i.fas.fa-sort-amount-down(v-show="column.sort && column.sortDesc")
         tr(v-for="(row, i) in rows" :key="i")
-            td {{row.performed_at}}
+            td {{row.performed_at.format('DD.MM.YYYY HH:mm')}}
             td {{row.name}}
             td {{row.amount}}
             td {{row.balance}}
