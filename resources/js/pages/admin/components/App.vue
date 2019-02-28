@@ -38,7 +38,7 @@
                                     li.nav-item
                                         router-link.nav-link.active(to='/admin/users') Users
                                     li.nav-item
-                                        a.nav-link(href='#') Transactions
+                                        router-link.nav-link.active(to='/admin/transactions') Transactions
                     .col-md-10
                         router-view
 </template>
