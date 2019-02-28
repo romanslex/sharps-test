@@ -20,4 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/data/transactions', 'TransactionController@create')->name('create-transaction');
 
+Route::put('/data/users/{id}', 'Admin\UserController@update')->name('update-user');
+
 Route::get('/admin{any}', 'Admin\HomeController@index')->name('admin')->where('any', '.*');
