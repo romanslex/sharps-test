@@ -32,7 +32,7 @@
                     td {{user.email}}
                     td {{user.balance}}
                     td
-                        i.fas.fa-ban.text-danger(data-toggle="popover" title="User has been banned")
+                        i.fas.fa-ban.text-danger(v-if="user.is_banned" data-toggle="popover" title="User has been banned")
 
 </template>
 
