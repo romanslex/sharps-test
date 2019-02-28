@@ -29,18 +29,12 @@
             return {
                 showErrorBlock: false,
                 showSuccessBlock: false,
-                isBtnLocked: false
-            }
-        },
-        computed: {
-            user() {
-                return this.$store.getters.user(
-                    this.$route.params.id
-                )
+                isBtnLocked: false,
+                user: {}
             }
         },
         methods: {
-            changeUser(){
+            changeUser() {
                 this.showErrorBlock = false;
                 this.showSuccessBlock = false;
                 this.isBtnLocked = true;
@@ -56,6 +50,11 @@
                         this.isBtnLocked = false;
                     })
             }
+        },
+        created() {
+            this.user = Object.assign({}, this.$store.getters.user(
+                this.$route.params.id
+            ))
         }
     }
 </script>
