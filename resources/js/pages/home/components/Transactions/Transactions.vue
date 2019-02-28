@@ -35,6 +35,7 @@
 
 <script>
     import DatePicker from 'vue2-datepicker'
+    import {EventBus} from '../../../../event-bus'
 
     export default {
         components: {
@@ -74,6 +75,9 @@
                 this.columns.map(i => data = i.filter(data));
                 this.rows = data;
                 this.sort(this.currentSortColumn);
+            },
+            copy(row) {
+                EventBus.$emit('copy-transaction', {user: row.name, amount: row.amount});
             }
         },
         created() {
