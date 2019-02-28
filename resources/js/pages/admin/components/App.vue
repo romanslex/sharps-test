@@ -30,7 +30,16 @@
         main.py-4
             .container
                 .row.justify-content-center
-                    .col-md-8
+                    .col-md-2
+                        .card
+                            .card-header Menu
+                            .card-body
+                                ul.nav.flex-column
+                                    li.nav-item
+                                        a.nav-link.active(href='#') Users
+                                    li.nav-item
+                                        a.nav-link(href='#') Transactions
+                    .col-md-10
                         .card
                             .card-header Transactions
                             .card-body Hi
