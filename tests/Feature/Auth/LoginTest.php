@@ -25,7 +25,7 @@ class LoginTest extends TestCase
     public function user_can_visit_home()
     {
         // arrange
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['id' => 2]);
 
         // act
         $response = $this
