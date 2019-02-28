@@ -5,5 +5,9 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        created() {
+            console.log(this.$store.state.users)
+        }
+    }
 </script>
