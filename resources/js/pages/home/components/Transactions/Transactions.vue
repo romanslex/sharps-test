@@ -22,11 +22,14 @@
                 | {{column.name}}
                 i.fas.fa-sort-amount-up(v-show="column.sort && !column.sortDesc")
                 i.fas.fa-sort-amount-down(v-show="column.sort && column.sortDesc")
+            th
         tr(v-for="(row, i) in rows" :key="i")
             td {{row.performed_at.format('DD.MM.YYYY HH:mm')}}
             td {{row.name}}
             td {{row.amount}}
             td {{row.balance}}
+            td
+                i.far.fa-copy.copy-transaction(v-if="row.is_outbound" @click="copy(row)")
 
 </template>
 
@@ -95,4 +98,7 @@
             display none
         >>> .mx-datepicker-range
             width 210px
+
+    .copy-transaction
+        cursor pointer
 </style>
