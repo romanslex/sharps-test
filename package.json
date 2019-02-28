@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "watch": "npx webpack --config webpack.dev.js --watch",
-    "prod": "./node_modules/.bin/gulp webpack-prod",
+    "prod": "./node_modules/.bin/gulp prod",
     "sass": "./node_modules/.bin/gulp sass"
   },
   "devDependencies": {
@@ -12,6 +12,7 @@
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",
     "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-sass": "^4.0.2",
     "jquery": "^3.2",
     "lodash": "^4.17.5",
