@@ -19,6 +19,7 @@
 <script>
     import vSelect from 'vue-select'
     import { required, integer, minValue, maxValue } from 'vuelidate/lib/validators'
+    import { EventBus } from "../../../event-bus"
 
     export default {
         components: {
@@ -67,6 +68,12 @@
                     amount: this.amount
                 }).catch(error => console.log(error));
             }
+        },
+        created() {
+            EventBus.$on('copy-transaction', data => {
+                this.amount = data.amount;
+                this.recipient = {label: data.name, value: data.id};
+            });
         }
     }
 </script>

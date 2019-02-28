@@ -51,6 +51,7 @@ class HomeViewModel
     {
         return $outboundTransactions->map(function ($item) {
             return [
+                'recipient_id' => $item->recipient_id,
                 'performed_at' => $item->performed_at->format('Y-m-d H:i:s'),
                 'name' => $item->recipient->name,
                 'amount' => $item->amount,
