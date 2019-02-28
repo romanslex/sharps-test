@@ -25,12 +25,14 @@
                         | {{column.name}}
                         i.fas.fa-sort-amount-up(v-show="column.sort && !column.sortDesc")
                         i.fas.fa-sort-amount-down(v-show="column.sort && column.sortDesc")
-                    th
+                    th Banned
                 tr(v-for="user in rows" :key="user.id")
                     td {{user.id}}
                     td {{user.name}}
                     td {{user.email}}
                     td {{user.balance}}
+                    td
+                        i.fas.fa-ban.text-danger(data-toggle="popover" title="User has been banned")
 
 </template>
 
