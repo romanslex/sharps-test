@@ -23,7 +23,11 @@
                 i.fas.fa-sort-amount-up(v-show="column.sort && !column.sortDesc")
                 i.fas.fa-sort-amount-down(v-show="column.sort && column.sortDesc")
         tr(v-for="(row, i) in rows" :key="i")
-            td(v-for="column in columns" :key="column.key") {{row[column.key]}}
+            td {{row.performed_at}}
+            td {{row.name}}
+            td {{row.amount}}
+            td {{row.balance}}
+
 </template>
 
 <script>
