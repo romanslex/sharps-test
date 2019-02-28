@@ -36,7 +36,7 @@
                             .card-body
                                 ul.nav.flex-column
                                     li.nav-item
-                                        a.nav-link.active(href='#') Users
+                                        router-link.nav-link.active(to='/admin/users') Users
                                     li.nav-item
                                         a.nav-link(href='#') Transactions
                     .col-md-10
