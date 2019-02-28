@@ -4480,6 +4480,10 @@ vue-loader@^15.5.1:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-router@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
+
 vue-select@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-2.5.1.tgz#9886e7123150a52dc8dbfe3202d0387268835aaa"

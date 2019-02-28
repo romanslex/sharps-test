@@ -40,11 +40,7 @@
                                     li.nav-item
                                         a.nav-link(href='#') Transactions
                     .col-md-10
-                        .card
-                            .card-header Transactions
-                            .card-body Hi
-
-
+                        router-view
 </template>
 
 <script>
