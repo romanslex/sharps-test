@@ -25,7 +25,8 @@ class Transaction extends Model
 
     public static function createRemittance($payer, $recipient, $amount)
     {
-        \DB::transaction(function() use ($payer, $recipient, $amount) {
+        $transaction = null;
+        \DB::transaction(function() use ($payer, $recipient, $amount, &$transaction) {
             if($payer->balance < $amount)
                 throw new NotEnoughMoneyException('Not enough money for this action');
 
@@ -35,7 +36,7 @@ class Transaction extends Model
             $payer->save();
             $recipient->save();
 
-            $payer->outboundTransactions()->create([
+            $transaction = $payer->outboundTransactions()->create([
                 'recipient_id' => $recipient->id,
                 'amount' => $amount,
                 'payer_balance' => $payer->balance,
@@ -43,8 +44,6 @@ class Transaction extends Model
                 'performed_at' => now()
             ]);
         });
-        return $payer->outboundTransactions()
-            ->orderBy('id', 'desc')
-            ->first();
+        return $transaction;
     }
 }
