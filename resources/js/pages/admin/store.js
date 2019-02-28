@@ -11,6 +11,12 @@ const store = new Vuex.Store({
     mutations: {
         initState(state, payload) {
             state.users = payload;
+        },
+        changeUser(state, payload) {
+            let users = state.users.slice();
+            let user = users.find(i => i.id === payload.id);
+            user.is_banned = payload.is_banned;
+            state.users = users;
         }
     },
     actions: {
@@ -23,7 +29,7 @@ const store = new Vuex.Store({
                 axios
                     .put('/data/users/' + user.id, {is_banned: user.is_banned})
                     .then(response => {
-                        commit('changeUser', response.data);
+                        commit('changeUser', {id: user.id, is_banned: user.is_banned});
                         resolve();
                     })
                     .catch(error => reject(error));
