@@ -93,4 +93,6 @@
     .table
         >>> svg
             display none
+        >>> .mx-datepicker-range
+            width 210px
 </style>
