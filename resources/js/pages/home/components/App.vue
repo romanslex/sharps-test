@@ -46,8 +46,8 @@
 </template>
 
 <script>
-    import Transactions from './Transactions/Transactions.vue';
-    import {Column} from "./Transactions/Column";
+    import Transactions from './Transactions.vue';
+    import {Column} from "../../shared/Column";
     import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
