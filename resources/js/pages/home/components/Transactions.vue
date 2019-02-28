@@ -38,7 +38,7 @@
 
 <script>
     import DatePicker from 'vue2-datepicker'
-    import {EventBus} from '../../../../event-bus'
+    import {EventBus} from '../../../event-bus'
 
     export default {
         components: {
