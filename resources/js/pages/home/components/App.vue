@@ -47,7 +47,7 @@
 
 <script>
     import Transactions from './Transactions/Transactions.vue';
-    import {Column} from "./Transactions/Column";
+    import {Column} from "../../shared/Column";
     import CreateTransactionForm from './CreateTransactionForm.vue';
 
     export default {
