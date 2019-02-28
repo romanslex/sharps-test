@@ -72,7 +72,7 @@
         created() {
             EventBus.$on('copy-transaction', data => {
                 this.amount = data.amount;
-                this.recipient = {label: data.name}
+                this.recipient = {label: data.name, value: data.id};
             });
         }
     }

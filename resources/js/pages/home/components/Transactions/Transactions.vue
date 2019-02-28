@@ -77,7 +77,11 @@
                 this.sort(this.currentSortColumn);
             },
             copy(row) {
-                EventBus.$emit('copy-transaction', {user: row.name, amount: row.amount});
+                EventBus.$emit('copy-transaction', {
+                    name: row.name,
+                    id: row.recipient_id,
+                    amount: row.amount
+                });
             }
         },
         created() {
