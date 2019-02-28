@@ -40,11 +40,10 @@ class HomeViewModel
 
     private function initTransactions($outboundTransactions, $inboundTransactions)
     {
-        return $this
-            ->getFormatOutboundTransactions($outboundTransactions)
-            ->merge(
-                $this->getFormatInboundTransactions($inboundTransactions)
-            );
+        return array_merge(
+            $this->getFormatInboundTransactions($inboundTransactions)->toArray(),
+            $this->getFormatOutboundTransactions($outboundTransactions)->toArray()
+        );
     }
 
     private function getFormatOutboundTransactions($outboundTransactions)
