@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RedirectIfAdmin;
 use Illuminate\Http\Request;
 use Models\Transaction;
 use Models\User;
 
 class TransactionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', RedirectIfAdmin::class]);
+    }
+
     public function create(Request $request)
     {
         $request->validate([

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Middleware\RedirectIfNotAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Models\Transaction;
@@ -9,6 +10,11 @@ use Models\User;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', RedirectIfNotAdmin::class]);
+    }
+
     public function index()
     {
         $users = User::all();

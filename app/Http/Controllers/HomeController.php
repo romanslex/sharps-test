@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RedirectIfAdmin;
 use App\ViewModels\HomeViewModel;
 use Illuminate\Http\Request;
 use Models\User;
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', RedirectIfAdmin::class]);
     }
 
     /**
