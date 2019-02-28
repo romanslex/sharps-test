@@ -2,6 +2,7 @@
 
 namespace Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,5 +48,9 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class, 'recipient_id');
     }
 
+    public function scopeAllExceptAdmin(Builder $q)
+    {
+        return $q->where('id', '!=', 1)->get();
+    }
 
 }

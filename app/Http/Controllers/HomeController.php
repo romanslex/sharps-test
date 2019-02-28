@@ -29,7 +29,7 @@ class HomeController extends Controller
         $user = User::with(['outboundTransactions.recipient', 'inboundTransactions.payer'])
             ->findOrFail(auth()->user()->id);
 
-        $users = User::all()->except($user->id);
+        $users = User::allExceptAdmin()->except($user->id);
 
         $viewModel = new HomeViewModel(
             $user,

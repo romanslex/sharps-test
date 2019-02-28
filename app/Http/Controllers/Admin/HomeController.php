@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::allExceptAdmin();
         $transactions = Transaction::with(['payer', 'recipient'])
             ->get()
             ->map(function ($item) {
