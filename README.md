@@ -1,6 +1,6 @@
 # Тестовое задание sharps
 ## Как запустить
-- git clone https://github.com/romanslex/big-deal-test.git folder
+- git clone https://github.com/romanslex/sharps-test.git folder
 - cd folder
 - composer install
 - cp .env.example .env
