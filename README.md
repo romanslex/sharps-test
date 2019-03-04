@@ -6,5 +6,6 @@
 - cp .env.example .env
 - php artisan key:generate
 - (настроть в .env свою бд)
+- php artisan migrate --seed
 - yarn
 - yarn run prod
